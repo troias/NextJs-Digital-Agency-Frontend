@@ -1,17 +1,14 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head"
+import Image from "next/image"
+import styles from "../styles/Home.module.css"
 
 export default function Home(props) {
-
-
+  const { projects } = props
   console.log("props", props)
 
   // const fetchHomePageData = (props) => {
 
   // }
-
-
 
   return (
     <div className={styles.container}>
@@ -26,11 +23,14 @@ export default function Home(props) {
           <section className="site-section hero-section h-screen">
             <div className="wrapper flex items-center justify-center h-full m-auto max-w-6xl">
               <header className="text-center md:w-2/3">
-                <h1 className="hero-text md:text-7xl">Designli - Beautiful Innovation</h1>
+                <h1 className="hero-text md:text-7xl">
+                  Designli - Beautiful Innovation
+                </h1>
                 <p className="mb-4">
-                  We at Designli are obsessed with beautiful innovation. That's why we
-                  go for a modern approach in providing high end premium services to
-                  our customers and boy are they happy with the results so far!
+                  We at Designli are obsessed with beautiful innovation. That's
+                  why we go for a modern approach in providing high end premium
+                  services to our customers and boy are they happy with the
+                  results so far!
                 </p>
                 <button className="cta">Get in touch</button>
               </header>
@@ -46,7 +46,6 @@ export default function Home(props) {
                   </p>
                 </div>
               </header>
-           
             </div>
           </section>
           <section className="site-section projects-section">
@@ -55,20 +54,24 @@ export default function Home(props) {
                 <h1 className="header-text">Our Projects</h1>
                 <p>We at Designli are obsessed with beautiful innovation.</p>
               </header>
-             
+
               <div className="action-cont text-center mt-12">
-      
+              {/* card */}
               </div>
             </div>
           </section>
           <section className="site-section blog-section">
             <div className=" wrapper py-12 md:grid gap-8 grid-cols-7 items-center m-auto max-w-6xl">
-              <h1 className="height: min-content" class="md:grid col-start-1 col-end-3 mb-8">
+              <h1
+                className="height: min-content"
+                class="md:grid col-start-1 col-end-3 mb-8"
+              >
                 <h1 className="header-text">Our Blog</h1>
-                <p className="mb-2">Helpful content from from the team to you.</p>
+                <p className="mb-2">
+                  Helpful content from from the team to you.
+                </p>
                 <button className="cta w-max">Explore our blog</button>
               </h1>
-          
             </div>
           </section>
         </main>
@@ -77,13 +80,115 @@ export default function Home(props) {
   )
 }
 
-export const getStaticProps = (ctx) => {
+export const getStaticProps = async (ctx) => {
+
+  const fetchProjects = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        query: `
+        query {
+          projects {
+            data {
+              attributes {
+                title
+                intro
+                slug
+                body
+              }
+            }
+          }
+        }
+        `,
+      }),
+    })
+
+    const data = await res.json()
+    return data
+  }
+
+
+  const fetchBlogArticles = async  () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        query: `
+              query {
+                articles {
+                  data {
+                    attributes {
+                      title
+                      intro
+                      slug
+                      body
+                    }
+                  }
+                }
+              }
+        `,
+      })
+    })
+    const data = await res.json()
+    return data
+  }
+
+ 
+
+  const fetchServices = async  () => {
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        query: `
+            query {
+              projectCategories {
+                data {
+                  attributes {
+                    name
+                    description
+                    
+                  }
+                }
+              }
+            }
+        `,
+      }),
+    
+
+    })
+    const data = await res.json()
+    return data
+  }
+
+
+ 
+
+    const blogArticles = await fetchBlogArticles().then((data) => data.data.articles.data)
+    const projects = await fetchProjects().then((data) => data.data.projects.data)
+   const services = await fetchServices().then((data) => data.data.projectCategories.data)
+
+    console.log("projects", await projects)
+   console.log("fetchBlogArticles", blogArticles)
+   console.log("fetchServices", services)
 
   return {
     props: {
       host: process.env.NEXT_PUBLIC_STRAPI_API_URL,
-
-    }
+       projects,
+        blogArticles,
+        services
+    },
   }
 }
-

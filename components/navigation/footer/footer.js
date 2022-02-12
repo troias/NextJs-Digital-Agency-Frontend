@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import NextLogo from '../.././ui/nextLogo'
 
 const Footer = () => {
   return (
@@ -9,11 +10,11 @@ const Footer = () => {
         <div className="wrapper md:grid grid-cols-5">
           <header className="grid col-start-1 col-end-3 mb-6 text-center md:text-left" >
             <figure
-              className=" SiteLogo flex items-center justify-center md:justify-start gap-2 mb-2 " >
-              {/* <nuxt-logo class="w-12" /> */}
-              <h1 class="text-2xl font-black">Designli</h1>
+              className=" SiteLogo flex items-center justify-center md:justify-start gap-2 mb-2" >
+               <NextLogo className="w-12" /> 
+              
             </figure>
-  
+            <h1 class="text-2xl font-black">Designli</h1>
             <p>Obsessed with beautiful innovation.</p>
           </header>
           <div className="link-group md:grid grid-cols-3 col-start-3 col-end-6">
