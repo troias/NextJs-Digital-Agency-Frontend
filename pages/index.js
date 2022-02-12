@@ -2,7 +2,17 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home(props) {
+
+
+  console.log("props", props)
+
+  // const fetchHomePageData = (props) => {
+
+  // }
+
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -11,59 +21,69 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className="text-red-600">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <>
+        <main>
+          <section className="site-section hero-section h-screen">
+            <div className="wrapper flex items-center justify-center h-full m-auto max-w-6xl">
+              <header className="text-center md:w-2/3">
+                <h1 className="hero-text md:text-7xl">Designli - Beautiful Innovation</h1>
+                <p className="mb-4">
+                  We at Designli are obsessed with beautiful innovation. That's why we
+                  go for a modern approach in providing high end premium services to
+                  our customers and boy are they happy with the results so far!
+                </p>
+                <button className="cta">Get in touch</button>
+              </header>
+            </div>
+          </section>
+          <section className="site-section services-section">
+            <div className="wrapper m-auto py-12 max-w-6xl">
+              <header className="relative grid md:grid-cols-3 gap-6 z-10 text-center">
+                <div className="wrapper col-start-2">
+                  <h1 className="header-text">Our Services</h1>
+                  <p className="mb-4">
+                    We at Designli are obsessed with beautiful innovation.
+                  </p>
+                </div>
+              </header>
+           
+            </div>
+          </section>
+          <section className="site-section projects-section">
+            <div className="wrapper py-12 m-auto max-w-4xl">
+              <header className="text-center mb-6">
+                <h1 className="header-text">Our Projects</h1>
+                <p>We at Designli are obsessed with beautiful innovation.</p>
+              </header>
+             
+              <div className="action-cont text-center mt-12">
+      
+              </div>
+            </div>
+          </section>
+          <section className="site-section blog-section">
+            <div className=" wrapper py-12 md:grid gap-8 grid-cols-7 items-center m-auto max-w-6xl">
+              <h1 className="height: min-content" class="md:grid col-start-1 col-end-3 mb-8">
+                <h1 className="header-text">Our Blog</h1>
+                <p className="mb-2">Helpful content from from the team to you.</p>
+                <button className="cta w-max">Explore our blog</button>
+              </h1>
+          
+            </div>
+          </section>
+        </main>
+      </>
     </div>
   )
 }
+
+export const getStaticProps = (ctx) => {
+
+  return {
+    props: {
+      host: process.env.NEXT_PUBLIC_STRAPI_API_URL,
+
+    }
+  }
+}
+
