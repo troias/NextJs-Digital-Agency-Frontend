@@ -1,46 +1,55 @@
 import React from 'react'
 import ProductCard from '../../components/projects/projectCard'
+import { getProjectBySlug, getAllProjects} from '../../utils/api'
+import { loader } from '../../utils/media'
+import Image from 'next/image'
 
  const ProductItem = (props) => {
+
+  const {title, intro, body, cover,  project_categories  } = props.project.attributes
+  const { url, alternativeText, width, height } = cover.data.attributes
+    const projectCategory = project_categories.data[0].attributes.name
+  console.log("projectItem props", projectCategory)
+  // console.log("projectItem", title, intro, body, cover)
   return (
     <>
-    <template>
+    <>
   {/* <!-- pages/Projects/_slug.vue --> */}
   <main>
-    <div v-if="project">
+    <div>
       <header>
-        <div class="cover img-cont h-full max-h-96">
-          {/* <img
-            v-if="coverImageUrl"
-            class="rounded-b-2xl"
-            :src="coverImageUrl"
-            alt=""
-          /> */}
+        <div className="cover img-cont h-full max-h-96">
+        <Image
+                    loader={loader}
+                    layout="responsive"
+                    src={url}
+                    alt={alternativeText}
+                    width={width}
+                    height={height}
+                    objectFit="contain"
+                  />
         </div>
       </header>
       <div
-        class="cont relative bg-gray-50 p-12 z-10 m-auto max-w-6xl rounded-2xl"
+        className="cont relative bg-gray-50 p-12 z-10 m-auto max-w-6xl rounded-2xl"
       >
-        <article class="prose prose-xl m-auto w-full">
-          <p class="text-gray-600 text-sm mb-2">
-            { projectCategories }
+        <article className="prose prose-xl m-auto w-full">
+          <p className="text-gray-600 text-sm mb-2">
+             { projectCategory } 
           </p>
-          <h1 class="hero-text">{ project.title }</h1>
-          <p>{ project.intro }</p>
+         <h1 className="hero-text">{ title }</h1>
+          <p>{ intro }</p> 
 
           {/* <!-- use markdownit to render the markdown text to html --> */}
-          <div v-html="$md.render(project.body)" class="body"></div>
+          <div  className="body">
+          <p>{ body }</p> 
+          </div>
         </article>
       </div>
     </div>
-    <div v-else class="h-screen flex items-center justify-center text-center">
-      <header class="">
-        <h1 class="hero-text">Oops..</h1>
-        <p>That project doesnt exist</p>
-      </header>
-    </div>
+
   </main>
-</template>
+</>
 
 
 </>
@@ -48,3 +57,26 @@ import ProductCard from '../../components/projects/projectCard'
 }
 
 export default ProductItem
+
+
+export const getStaticPaths = async () => {
+  const projects = await getAllProjects()
+  
+  const paths = projects.map(project => ({
+    params: { slug: project.attributes.slug },
+  }))
+  return { paths, fallback: false }
+
+}
+
+export const getStaticProps = async ({ params }) => {
+  // console.log("getProjectBySlug", getProjectBySlug())
+   const project = await getProjectBySlug(params.slug)
+   console.log("getStaticPropsproject", project)
+  return {
+    props: {
+       project,
+    },
+  }
+}
+

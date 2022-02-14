@@ -1,9 +1,13 @@
 import Head from "next/head"
 import Image from "next/image"
 import styles from "../styles/Home.module.css"
+import ArticleCard from '../components/articles/articleCard'
+import ProjectCard from '../components/projects/projectCard'
+import ServiceCard from '../components/services/serviceCard'
+import { getAllBlogArticle, getAllProjects, getAllServices } from '../utils/api'
 
 export default function Home(props) {
-  const { projects } = props
+  const { projects, blogArticles, services } = props
   console.log("props", props)
 
   // const fetchHomePageData = (props) => {
@@ -56,7 +60,7 @@ export default function Home(props) {
               </header>
 
               <div className="action-cont text-center mt-12">
-              {/* card */}
+                  <ProjectCard projects={projects}/>  
               </div>
             </div>
           </section>
@@ -81,114 +85,22 @@ export default function Home(props) {
 }
 
 export const getStaticProps = async (ctx) => {
-
-  const fetchProjects = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        query: `
-        query {
-          projects {
-            data {
-              attributes {
-                title
-                intro
-                slug
-                body
-              }
-            }
-          }
-        }
-        `,
-      }),
-    })
-
-    const data = await res.json()
-    return data
-  }
-
-
-  const fetchBlogArticles = async  () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        query: `
-              query {
-                articles {
-                  data {
-                    attributes {
-                      title
-                      intro
-                      slug
-                      body
-                    }
-                  }
-                }
-              }
-        `,
-      })
-    })
-    const data = await res.json()
-    return data
-  }
-
  
+  const projects = await getAllProjects()
+  const blogArticles = await getAllBlogArticle()
+  const services = await getAllServices()
 
-  const fetchServices = async  () => {
+  console.log("projects", projects)
+  console.log("fetchBlogArticles",blogArticles)
+  console.log("fetchServices",services )
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        query: `
-            query {
-              projectCategories {
-                data {
-                  attributes {
-                    name
-                    description
-                    
-                  }
-                }
-              }
-            }
-        `,
-      }),
-    
-
-    })
-    const data = await res.json()
-    return data
-  }
-
-
- 
-
-    const blogArticles = await fetchBlogArticles().then((data) => data.data.articles.data)
-    const projects = await fetchProjects().then((data) => data.data.projects.data)
-   const services = await fetchServices().then((data) => data.data.projectCategories.data)
-
-    console.log("projects", await projects)
-   console.log("fetchBlogArticles", blogArticles)
-   console.log("fetchServices", services)
 
   return {
     props: {
       host: process.env.NEXT_PUBLIC_STRAPI_API_URL,
        projects,
-        blogArticles,
-        services
+       blogArticles,
+       services,
     },
   }
 }
