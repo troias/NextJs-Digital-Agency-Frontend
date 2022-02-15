@@ -1,10 +1,11 @@
 import Head from "next/head"
 import Image from "next/image"
+import Link from "next/link"
 import styles from "../styles/Home.module.css"
 import ArticleCard from '../components/articles/articleCard'
 import ProjectCard from '../components/projects/projectCard'
 import ServiceCard from '../components/services/serviceCard'
-import { getAllBlogArticle, getAllProjects, getAllServices } from '../utils/api'
+import { getAllArticles, getAllProjects, getAllServices } from '../utils/api'
 
 export default function Home(props) {
   const { projects, blogArticles, services } = props
@@ -30,26 +31,35 @@ export default function Home(props) {
                 <h1 className="hero-text md:text-7xl">
                   Designli - Beautiful Innovation
                 </h1>
-                <p className="mb-4">
+                <p className="mb-4  mt-5">
                   We at Designli are obsessed with beautiful innovation. That's
                   why we go for a modern approach in providing high end premium
                   services to our customers and boy are they happy with the
                   results so far!
                 </p>
-                <button className="cta">Get in touch</button>
+                <Link href={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/contact`}>
+                  <button className="bg-gray-700 text-gray-50 py-1 px-3 rounded-md transform hover:scale-105 mt-10">
+                    Get in touch
+                  </button>
+                </Link>
               </header>
             </div>
           </section>
           <section className="site-section services-section">
-            <div className="wrapper m-auto py-12 max-w-6xl">
+            <div className="wrapper m-auto py-6 max-w-6xl">
               <header className="relative grid md:grid-cols-3 gap-6 z-10 text-center">
                 <div className="wrapper col-start-2">
                   <h1 className="header-text">Our Services</h1>
-                  <p className="mb-4">
+                  <p className="mb-16">
                     We at Designli are obsessed with beautiful innovation.
                   </p>
                 </div>
               </header>
+              <div className="">
+              <ul class="services grid md:grid-cols-3 gap-6 transform md:-translate-y-20 mt-10">
+                <ServiceCard services={services} />
+              </ul>
+              </div>
             </div>
           </section>
           <section className="site-section projects-section">
@@ -59,23 +69,21 @@ export default function Home(props) {
                 <p>We at Designli are obsessed with beautiful innovation.</p>
               </header>
 
-              <div className="action-cont text-center mt-12">
-                  <ProjectCard projects={projects}/>  
-              </div>
+              <ul className="action-cont text-center  ">
+                <ProjectCard projects={projects} />
+              </ul>
             </div>
           </section>
           <section className="site-section blog-section">
             <div className=" wrapper py-12 md:grid gap-8 grid-cols-7 items-center m-auto max-w-6xl">
-              <h1
-                className="height: min-content"
-                class="md:grid col-start-1 col-end-3 mb-8"
-              >
+              <header className="height: min-content" class="md:grid col-start-1 col-end-3 mb-8">
                 <h1 className="header-text">Our Blog</h1>
-                <p className="mb-2">
-                  Helpful content from from the team to you.
-                </p>
+                <p className="mb-2">Helpful content from from the team to you.</p>
                 <button className="cta w-max">Explore our blog</button>
-              </h1>
+              </header>
+              <ul className="articles md:grid gap-6 col-start-3 col-end-8">
+                <ArticleCard articles={blogArticles} />
+              </ul>
             </div>
           </section>
         </main>
@@ -85,22 +93,22 @@ export default function Home(props) {
 }
 
 export const getStaticProps = async (ctx) => {
- 
+
   const projects = await getAllProjects()
-  const blogArticles = await getAllBlogArticle()
+  const blogArticles = await getAllArticles()
   const services = await getAllServices()
 
   console.log("projects", projects)
-  console.log("fetchBlogArticles",blogArticles)
-  console.log("fetchServices",services )
+  console.log("fetchBlogArticles", blogArticles)
+  console.log("fetchServices", services)
 
 
   return {
     props: {
       host: process.env.NEXT_PUBLIC_STRAPI_API_URL,
-       projects,
-       blogArticles,
-       services,
+      projects,
+      blogArticles,
+      services,
     },
   }
 }

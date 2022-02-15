@@ -1,6 +1,10 @@
 import React from 'react'
+import ProjectCard from '../../components/projects/projectCard'
+import { getAllProjects } from '../../utils/api'
 
- const Projects = () => {
+ const Projects = (props) => {
+   console.log("Projects", props)
+   const { projects } = props
   return (
     <main>
     <header className="px-4 mb-12">
@@ -10,10 +14,19 @@ import React from 'react'
       </div>
     </header>
     <ul className="m-auto px-4 max-w-5xl mb-12">
-      {/* <ProjectCard /> */}
+       <ProjectCard projects={projects}/> 
     </ul>
   </main>
   )
 }
 
 export default Projects
+
+export const getStaticProps = async () => {
+  const projects = await getAllProjects()
+  return {
+    props: {
+      projects,
+    },
+  }
+}

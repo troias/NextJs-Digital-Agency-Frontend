@@ -1,6 +1,10 @@
 import React from 'react'
 import ArticleCard from '../../components/articles/articleCard'
-const Blog = () => {
+import { getAllArticles } from '../../utils/api'
+
+const Blog = (props) => {
+  console.log("Blog", props)
+  const { articles } = props
   return (
     
 <>
@@ -12,11 +16,7 @@ const Blog = () => {
       </div>
     </header>
     <ul class="m-auto px-4 max-w-5xl grid gap-8 mb-12">
-      {/* <article-card
-        v-for="article in articles"
-        :key="article.id"
-        :article="article.attributes"
-      /> */}
+ {/* < ArticleCard articles={articles}/> */}
     </ul>
   </main>
 </>
@@ -24,3 +24,12 @@ const Blog = () => {
 }
 
 export default Blog
+
+export const getStaticProps = async () => {
+  const articles = await getAllArticles()
+  return {
+    props: {
+      articles,
+    },
+  }
+}

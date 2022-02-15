@@ -42,26 +42,40 @@ export const fetchProjects = async () => {
               }
             }
           }
-          projectCategories {
-                          data {
-                           attributes {
-                            name
-                            description
-                              
+        projectCategories {
+                        data {
+                          attributes {
+                          name
+                          description
+                            cover {
+                              ...fileParts
                             }
                           }
-                       }
+                        }
+                      }
 
-                       articles {
-                                        data {
-                                          attributes {
-                                            title
-                                            intro
-                                            slug
-                                            body
-                                           }
-                                        }
-                                      }
+          articles {
+          data {
+            attributes {
+                title
+                intro
+                slug
+                body
+              cover {
+                ...fileParts
+              }
+              categories {
+                data {
+                  attributes {
+                    __typename 
+                    title
+                  }
+                }
+              }
+             
+            }
+          }
+        }
 
 
         }
@@ -73,7 +87,7 @@ export const fetchProjects = async () => {
     return data
 }
 
-export const getAllBlogArticle = async () => {
+export const getAllArticles = async () => {
     const blogArticles = await fetchProjects().then(
         (data) => data.data.articles.data
     )
@@ -102,4 +116,12 @@ export const getProjectBySlug = async (slug) => {
         (data) => data.data.projects.data.find((project) => project.attributes.slug === slug)
     )
     return project
+}
+
+export const getPostBySlug = async (slug) => {
+    const post = await getAllArticles().then(
+         (data) => data.find((post) => post.attributes.slug === slug)
+     )
+     console.log("getPostBySlug", post)
+     return post
 }
