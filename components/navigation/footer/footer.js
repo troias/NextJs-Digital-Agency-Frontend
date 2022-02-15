@@ -29,9 +29,9 @@ const Footer = () => {
             <section className="mb-4 text-center md:text-left">
               <h1 className="text-xl font-extrabold">Services</h1>
               <ul>
-                <li><Link href="/services#branding">Branding</Link></li>
-                <li><Link href="/services#graphics">Graphics</Link></li>
-                <li><Link href="/services#ui/ux">UI/UX</Link></li>
+                <li><Link href="/services/branding">Branding</Link></li>
+                <li><Link href="/services/graphics">Graphics</Link></li>
+                <li><Link href="/services/ui">UI/UX</Link></li>
               </ul>
             </section>
             <section className="text-center md:text-left">

@@ -45,11 +45,13 @@ export const fetchProjects = async () => {
         projectCategories {
                         data {
                           attributes {
+                          slug
                           name
                           description
                             cover {
                               ...fileParts
                             }
+                           
                           }
                         }
                       }
@@ -124,4 +126,11 @@ export const getPostBySlug = async (slug) => {
      )
      console.log("getPostBySlug", post)
      return post
+}
+
+export const getServiceBySlug = async (slug) => {
+    const service = await getAllServices().then(
+        (data) => data.find((service) => service.attributes.slug === slug)
+    )
+    return service
 }

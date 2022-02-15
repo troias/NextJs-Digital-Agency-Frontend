@@ -1,6 +1,7 @@
 import React from 'react'
+import {getServiceBySlug, getAllServices } from '../../utils/api'
 
-export const ServiceItem = () => {
+export const ServiceItem = (props) => {
   return (
     <div>
       
@@ -11,22 +12,22 @@ export const ServiceItem = () => {
 export default ServiceItem
 
 export const getStaticPaths = async () => {
-  const projects = await getAllProjects()
+     const services = await getAllServices()
   
-  const paths = projects.map(project => ({
-    params: { slug: project.attributes.slug },
-  }))
-  return { paths, fallback: false }
+   const paths = services.map(service => ({
+     params: { slug: service.attributes.slug },
+   }))
+   return { paths, fallback: false }
 
 }
 
 export const getStaticProps = async ({ params }) => {
-  // console.log("getProjectBySlug", getProjectBySlug())
-   const project = await getProjectBySlug(params.slug)
-   console.log("getStaticPropsproject", project)
+  //  console.log("getServiceBySlug", await getServiceBySlug(params.slug))
+    const services = await getServiceBySlug(params.slug)
+    console.log("getStaticPropsproject", services)
   return {
     props: {
-       project,
+      services,
     },
   }
 }
