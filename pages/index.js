@@ -37,7 +37,7 @@ export default function Home(props) {
                   services to our customers and boy are they happy with the
                   results so far!
                 </p>
-                <Link href={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/contact`}>
+                <Link href="/contact">
                   <button className="bg-gray-700 text-gray-50 py-1 px-3 rounded-md transform hover:scale-105 mt-10">
                     Get in touch
                   </button>

@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const ServiceCard = (props) => {
   // console.log("ServiceCard props", props)
-  const { services} = props
+  const { services } = props
   // console.log("ServiceCard services", services)
   return (
 
@@ -13,16 +13,19 @@ const ServiceCard = (props) => {
       {
         services.map((service, index) => {
           // console.log("service", service)
-          const {name, description, cover} = service.attributes
+          const { name, description, cover, slug } = service.attributes
           // console.log("service.attributes", cover)
           const { url, alternativeText, width, height } = cover.data.attributes
 
           return (
-         
-            <li className="service rounded-xl shadow-lg list-none ">
-            <header>
-              <div className="img-cont h-36 overflow-hidden rounded-xl">
-              <Image
+
+            <li className="service rounded-xl shadow-lg list-none cursor-pointer ">
+
+              <Link href={`/services/${slug}`} key={index} className="">
+
+              <header>
+                <div className="img-cont h-36 overflow-hidden rounded-xl">
+                  <Image
                     loader={loader}
                     layout="responsive"
                     src={url}
@@ -31,17 +34,21 @@ const ServiceCard = (props) => {
                     height={height}
                     objectFit="contain"
                   />
-              </div>
-              <div className="text-wrapper p-4">
-                 <h3 className="font-bold text-xl mb-2">{name}</h3> 
-                <p className="mb-2">
-                  {description} 
-                </p>
-              </div>
-            </header>
+                </div>
+                <div className="text-wrapper p-4">
+                  <h3 className="font-bold text-xl mb-2">{name}</h3>
+                  <p className="mb-2">
+                    {description}
+                  </p>
+                </div>
+              </header>
+
+            </Link>
+
           </li>
-          )
-        }
+
+  )
+}
         )
       }
     </>

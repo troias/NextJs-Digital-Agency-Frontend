@@ -20,6 +20,19 @@ a {
 }
 
 @layer components {
+
+  body {
+    @apply bg-gray-50 text-gray-800;
+  }
+  
+  button, label{
+    @apply cursor-pointer;
+  }
+
+  .site-section {
+    @apply p-4;
+  }
+  
   .menu-btn {
     @apply focus:opacity-100 focus:visible focus:w-max focus:h-auto
 
@@ -55,5 +68,36 @@ a {
       @apply hover:text-gray-900;
   }
     
+  }
+  .form-group {
+    @apply flex flex-wrap gap-4;
+  }
+  .form-control {
+    @apply flex flex-col flex-grow;
+  }
+  .form-control label {
+    @apply font-bold text-gray-600 mb-2;
+  }
+  .form-control input,
+  .form-control textarea {
+    @apply p-4 bg-gray-200 rounded-lg;
+  }
+  .form-control.check {
+    @apply relative flex items-center justify-center cursor-pointer;
+  }
+  .form-control.check label {
+    @apply m-0 w-full h-full p-4 text-center;
+  }
+  .form-control.check input {
+    @apply absolute opacity-0;
+  }
+  .form-control.check input:checked ~ label{
+    @apply border-opacity-0 text-gray-50 bg-gray-700;
+  }
+  .form-control.check label:hover {
+    @apply border-opacity-100
+  }
+  .form-control.check label {
+    @apply border-2 border-gray-600 border-opacity-30 rounded-lg;
   }
 }

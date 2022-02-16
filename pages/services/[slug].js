@@ -1,11 +1,26 @@
 import React from 'react'
 import {getServiceBySlug, getAllServices } from '../../utils/api'
+import ServiceCard from '../../components/services/serviceCard'
 
 export const ServiceItem = (props) => {
+  console.log("ServiceItem props", props)
+  const { name, description, cover } = props.services.attributes
   return (
-    <div>
-      
-    </div>
+    <>
+      <li className="service rounded-xl shadow-lg list-none cursor-pointer ">
+        <header>
+          <div className="img-cont h-36 overflow-hidden rounded-xl">
+            <img src={cover.data.url} alt={cover.data.alternativeText} />
+          </div>
+          <div className="text-wrapper p-4">
+            <h3 className="font-bold text-xl mb-2">{name}</h3>
+            <p className="mb-2">
+              {description}
+            </p>
+          </div>
+        </header>
+      </li>
+    </>
   )
 }
 

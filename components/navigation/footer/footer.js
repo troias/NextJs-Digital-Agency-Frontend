@@ -11,7 +11,7 @@ const Footer = () => {
           <header className="grid col-start-1 col-end-3 mb-6 text-center md:text-left" >
             <figure
               className=" SiteLogo flex items-center justify-center md:justify-start gap-2 mb-2" >
-               <NextLogo className="w-12" /> 
+               <NextLogo  /> 
               
             </figure>
             <h1 class="text-2xl font-black">Designli</h1>
@@ -31,15 +31,15 @@ const Footer = () => {
               <ul>
                 <li><Link href="/services/branding">Branding</Link></li>
                 <li><Link href="/services/graphics">Graphics</Link></li>
-                <li><Link href="/services/ui">UI/UX</Link></li>
+                <li><Link href="/services/ux-ui">UI/UX</Link></li>
               </ul>
             </section>
             <section className="text-center md:text-left">
               <h1 className="text-xl font-extrabold">Contact</h1>
               <ul>
                 <li><Link href="/contact">Send us a message</Link></li>
-                <li><a href="tel:+00000000">+2345678900</a></li>
-                <li><a href="mailto:mail@mail.com">mail@mail.com</a></li>
+                <li><a href="tel:+00000000">+64278494900</a></li>
+                <li><a href="mailto:mail@mail.com">webdevincnz@gmail.com</a></li>
               </ul>
             </section>
           </div>
