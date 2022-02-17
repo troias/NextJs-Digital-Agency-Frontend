@@ -25,10 +25,10 @@ export default function Home(props) {
 
       <>
         <main>
-          <section className="site-section hero-section h-screen">
+          <section className="site-section hero-section h-[80vh]">
             <div className="wrapper flex items-center justify-center h-full m-auto max-w-6xl">
-              <header className="text-center md:w-2/3">
-                <h1 className="hero-text md:text-7xl">
+              <header className="text-center md:w-2/3 md:mt-16 ">
+                <h1 className="hero-text md:text-7xl ">
                   Designli - Beautiful Innovation
                 </h1>
                 <p className="mb-4  mt-5">
