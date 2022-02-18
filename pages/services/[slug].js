@@ -10,7 +10,7 @@ export const ServiceItem = (props) => {
       <li className="service rounded-xl shadow-lg list-none cursor-pointer ">
         <header>
           <div className="img-cont h-36 overflow-hidden rounded-xl">
-            <img src={cover.data.url} alt={cover.data.alternativeText} />
+            {/* <img src={cover.data.url} alt={cover.data.alternativeText} /> */}
           </div>
           <div className="text-wrapper p-4">
             <h3 className="font-bold text-xl mb-2">{name}</h3>

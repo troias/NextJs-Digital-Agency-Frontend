@@ -10,7 +10,7 @@ import { getAllProjects } from '../../utils/api'
     <header className="px-4 mb-12">
       <div className="wrapper mt-28 m-auto max-w-6xl">
         <h1 className="hero-text">Our Projects</h1>
-        <p>See what we've been up to</p>
+        <p>See what we&apos;ve been up to</p>
       </div>
     </header>
     <ul className="m-auto px-4 max-w-5xl mb-12">

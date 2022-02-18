@@ -10,7 +10,7 @@ const ProjectCard = (props) => {
 
     <>
       {
-        projects.map(project => {
+        projects.map((project, index) => {
 
           // console.log("InnerProjectCard", project)
           const { title, intro, slug, cover } = project.attributes
@@ -26,7 +26,7 @@ const ProjectCard = (props) => {
           // The image has a fixed width and height
           return (
             <>
-              <li className="project grid gap-4 md:gap-8 md:grid-cols-7 items-center mb-8 md:mb-12">
+              <li className="project grid gap-4 md:gap-8 md:grid-cols-7 items-center mb-8 md:mb-12" key={index}>
                 <header className="md:grid md:col-start-5 md:col-end-8">
                   <h1 className="text-xl md:text-3xl font-bold">{title}</h1>
                   <p>{intro}</p>

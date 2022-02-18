@@ -11,13 +11,13 @@ const ArticleCard = (props) => {
     return (
         <>
             {
-                articles.map(article => {
+                articles.map((article, index) => {
                      const  {title, slug, body, intro, cover} = article.attributes
                      const { url, alternativeText, width, height } = cover.data.attributes
                     console.log("ArticleCard", article.attributes)
                     // const { url, alternativeText, width, height } = cover.data.attributes
                     return (
-                        <li className="article md:grid gap-6 grid-cols-7 items-center mb-6 md:mb-0">
+                        <li className="article md:grid gap-6 grid-cols-7 items-center mb-6 md:mb-0" key={index}>
                             <div className="img-cont h-full overflow-hidden rounded-xl col-start-1 col-end-3">
                                 {/* <!-- fetch media from strapi using the STRAPI_URL --> */}
                                  <Image

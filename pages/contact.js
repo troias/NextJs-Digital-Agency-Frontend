@@ -41,7 +41,7 @@ const Contact = (props) => {
     onSubmit: async (values) => {
 
       try {
-        // console.log("strapi API env test", process.env.NEXT_PUBLIC_STRAPI_URL)
+  
         const req = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
           method: 'POST',
           headers: {
@@ -163,7 +163,7 @@ const Contact = (props) => {
             </div>
 
             <div className="form-control">
-              <label htmlFor="message">What's your request or message?</label>
+              <label htmlFor="message">What&apos;s your request or message?</label>
               <textarea id="message" rows="12" value={formik.values.message} onChange={formik.handleChange} onBlur={formik.handleBlur} required>Message us here</textarea>
             </div>
             <div className="action-cont">

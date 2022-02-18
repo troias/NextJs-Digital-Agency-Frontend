@@ -30,7 +30,7 @@ export default function Home(props) {
                   Designli - Beautiful Innovation
                 </h1>
                 <p className="mb-4  mt-5">
-                  We at Designli are obsessed with beautiful innovation. That's
+                  We at Designli are obsessed with beautiful innovation. That&apos;s
                   why we go for a modern approach in providing high end premium
                   services to our customers and boy are they happy with the
                   results so far!
@@ -49,7 +49,7 @@ export default function Home(props) {
                 <div className="wrapper col-start-2">
                   <h1 className="header-text">Our Services</h1>
                   <p className="mb-16">
-                    We at Designli are obsessed with beautiful innovation.
+                    We at Designli we are obsessed with beautiful innovation.
                   </p>
                 </div>
               </header>
@@ -64,7 +64,7 @@ export default function Home(props) {
             <div className="wrapper py-12 m-auto max-w-4xl">
               <header className="text-center mb-6">
                 <h1 className="header-text">Our Projects</h1>
-                <p>We at Designli are obsessed with beautiful innovation.</p>
+                <p>Here are some of the projects that we have worked on at Designli</p>
               </header>
 
               <ul className="action-cont text-center  ">
@@ -96,9 +96,9 @@ export const getStaticProps = async (ctx) => {
   const blogArticles = await getAllArticles()
   const services = await getAllServices()
 
-  console.log("projects", projects)
-  console.log("fetchBlogArticles", blogArticles)
-  console.log("fetchServices", services)
+  // console.log("projects", projects)
+  // console.log("fetchBlogArticles", blogArticles)
+  // console.log("fetchServices", services)
 
 
   return {
