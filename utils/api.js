@@ -7,75 +7,74 @@ export const fetchProjects = async () => {
         },
         body: JSON.stringify({
 
-            query: `
-        fragment fileParts on UploadFileEntityResponse {
-          data {
-            id
-            attributes {
-              alternativeText
-              width
-              height
-              mime
-              url
-              formats
+        query: `
+          fragment fileParts on UploadFileEntityResponse {
+            data {
+              id
+              attributes {
+                alternativeText
+                width
+                height
+                mime
+                url
+                formats
+              }
             }
           }
-        }
-        query {
-          projects {
-            data {
-              attributes {
-                title
-                intro
-                slug
-                body
-                cover {
-                  ...fileParts
-                }
-                project_categories {
-                  data {
-                    attributes {
-                      name
+          query {
+            projects {
+              data {
+                attributes {
+                  title
+                  intro
+                  slug
+                  body
+                  cover {
+                    ...fileParts
+                  }
+                  project_categories {
+                    data {
+                      attributes {
+                        name
+                      }
                     }
                   }
                 }
               }
             }
-          }
-        projectCategories {
-                        data {
-                          attributes {
-                          slug
-                          name
-                          description
-                            cover {
-                              ...fileParts
-                            }
-                           
-                          }
-                        }
-                      }
-
-          articles {
-          data {
-            attributes {
-                title
-                intro
+          projectCategories {
+              data {
+                attributes {
                 slug
-                body
-              cover {
-                ...fileParts
-              }
-              categories {
-                data {
-                  attributes {
-                    __typename 
-                    title
+                name
+                description
+                  cover {
+                    ...fileParts
                   }
+                
                 }
               }
-             
             }
+
+            articles {
+              data {
+                attributes {
+                    title
+                    intro
+                    slug
+                    body
+                  cover {
+                    ...fileParts
+                  }
+                  categories {
+                    data {
+                      attributes {
+                        title
+                      }
+                    }
+                  }
+              
+              }
           }
         }
 
@@ -124,7 +123,7 @@ export const getPostBySlug = async (slug) => {
     const post = await getAllArticles().then(
          (data) => data.find((post) => post.attributes.slug === slug)
      )
-     console.log("getPostBySlug", post)
+    //  console.log("getPostBySlug", post)
      return post
 }
 
