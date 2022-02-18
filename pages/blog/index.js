@@ -9,13 +9,13 @@ const Blog = (props) => {
 
     <>
       <main>
-        <header class="px-4 mb-12">
-          <div class="wrapper mt-28 m-auto max-w-6xl">
-            <h1 class="hero-text">Our Blog</h1>
+        <header className="px-4 mb-12">
+          <div className="wrapper mt-28 m-auto max-w-6xl">
+            <h1 className="hero-text">Our Blog</h1>
             <p>Front-end & back-end expertise from development to delivery</p>
           </div>
         </header>
-        <ul class="m-auto px-4 max-w-5xl grid gap-8 mb-12">
+        <ul className="m-auto px-4 max-w-5xl grid gap-8 mb-12">
           < ArticleCard articles={articles} />
         </ul>
       </main>

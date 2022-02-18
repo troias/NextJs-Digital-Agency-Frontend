@@ -28,8 +28,9 @@ import ReactMarkdown from 'react-markdown'
             
             {/* <!-- use markdownit to render the markdown text to html --> */}
             <div  className="body">
-              <ReactMarkdown children={body} />
-
+              <ReactMarkdown  />
+              {body}
+              <ReactMarkdown/>
             </div>
           </article>
         </div>

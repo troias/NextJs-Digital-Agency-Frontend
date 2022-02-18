@@ -39,7 +39,7 @@ a {
   }
 
   .hero-text {
-    @apply text-4xl md:text-7xl font-black mb-2;
+    @apply text-4xl md:text-7xl font-black mb-4;
   }
 
   .header-text {
