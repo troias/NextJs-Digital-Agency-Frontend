@@ -12,14 +12,14 @@ const ProjectCard = (props) => {
       {
         projects.map(project => {
 
-          console.log("InnerProjectCard", project)
+          // console.log("InnerProjectCard", project)
           const { title, intro, slug, cover } = project.attributes
           const { project_categories } = project.attributes
           const projectCategory = project_categories.data[0].attributes.name
           const { url, alternativeText, width, height } = cover.data.attributes
-          console.log("ProjectCategory", projectCategory)
-          console.log("CoverImg", cover)
-          console.log("img data", url, alternativeText, width, height)
+          // console.log("ProjectCategory", projectCategory)
+          // console.log("CoverImg", cover)
+          // console.log("img data", url, alternativeText, width, height)
 
       
 

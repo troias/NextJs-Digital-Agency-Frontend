@@ -83,7 +83,7 @@ const Contact = (props) => {
         })
 
         const res = await req.json()
-        console.log("res", res)
+        // console.log("res", res)
 
       } catch (error) {
         console.log("error", error)
@@ -116,7 +116,7 @@ const Contact = (props) => {
           <div className="wrapper flex flex-col gap-8 mb-8">
             <div className="form-group" >
               <div className="form-control">
-                <label for="name">Full name</label>
+                <label htmlFor="name">Full name</label>
                 <input type="text" id="name" value={formik.values.name} placeholder="Full name" onChange={formik.handleChange} onBlur={formik.handleBlur} required />
 
                 {formik.touched.firstName && formik.errors.firstName ? (
@@ -125,7 +125,7 @@ const Contact = (props) => {
 
               </div>
               <div className="form-control">
-                <label for="company">Company name</label>
+                <label htmlFor="company">Company name</label>
                 <input type="text" id="company" value={formik.values.company} placeholder="Company name" onChange={formik.handleChange} onBlur={formik.handleBlur} required />
 
                 {formik.touched.company && formik.errors.company ? (
@@ -135,7 +135,7 @@ const Contact = (props) => {
               </div>
             </div>
             <div className="form-control">
-              <label for="email">Email Address</label>
+              <label htmlFor="email">Email Address</label>
               <input type="email" id="email" value={formik.values.email} placeholder="Email" onChange={formik.handleChange} onBlur={formik.handleBlur} required />
 
               {formik.touched.email && formik.errors.email ? (
@@ -149,21 +149,21 @@ const Contact = (props) => {
               <div className="form-group check">
                 <div className="form-control check">
                   <input type="checkbox" name="service" id="branding" value="1" onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                  <label for="branding">Branding</label>
+                  <label htmlFor="branding">Branding</label>
                 </div>
                 <div className="form-control check">
                   <input type="checkbox" name="service" id="web_design" value="4" onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                  <label for="web_design">Web design</label>
+                  <label htmlFor="web_design">Web design</label>
                 </div>
                 <div className="form-control check">
                   <input type="checkbox" name="service" id="ui/ux" value="3" onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                  <label for="ui/ux">UI/UX</label>
+                  <label htmlFor="ui/ux">UI/UX</label>
                 </div>
               </div>
             </div>
 
             <div className="form-control">
-              <label for="message">What's your request or message?</label>
+              <label htmlFor="message">What's your request or message?</label>
               <textarea id="message" rows="12" value={formik.values.message} onChange={formik.handleChange} onBlur={formik.handleBlur} required>Message us here</textarea>
             </div>
             <div className="action-cont">

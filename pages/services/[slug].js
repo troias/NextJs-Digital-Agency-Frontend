@@ -39,7 +39,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   //  console.log("getServiceBySlug", await getServiceBySlug(params.slug))
     const services = await getServiceBySlug(params.slug)
-    console.log("getStaticPropsproject", services)
+    // console.log("getStaticPropsproject", services)
   return {
     props: {
       services,

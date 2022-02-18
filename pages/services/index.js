@@ -17,7 +17,7 @@ import ServiceCard from '../../components/services/serviceCard'
         </div>
       </header>
       <div className="">
-      <ul class="services grid md:grid-cols-3 gap-6 transform md:-translate-y-20 mt-10">
+      <ul className="services grid md:grid-cols-3 gap-6 transform md:-translate-y-20 mt-10">
         <ServiceCard services={services} />
       </ul>
       </div>
@@ -29,7 +29,7 @@ export default Index
 
 export const getStaticProps = async () => {
   const services = await getAllServices()
-  console.log("services", services)
+  // console.log("services", services)
   return {
     props: {
       services

@@ -14,7 +14,7 @@ const Footer = () => {
                <NextLogo  /> 
               
             </figure>
-            <h1 class="text-2xl font-black">Designli</h1>
+            <h1 className="text-2xl font-black">Designli</h1>
             <p>Obsessed with beautiful innovation.</p>
           </header>
           <div className="link-group md:grid grid-cols-3 col-start-3 col-end-6">

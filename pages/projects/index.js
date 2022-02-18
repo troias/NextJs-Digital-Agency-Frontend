@@ -3,7 +3,7 @@ import ProjectCard from '../../components/projects/projectCard'
 import { getAllProjects } from '../../utils/api'
 
  const Projects = (props) => {
-   console.log("Projects", props)
+  //  console.log("Projects", props)
    const { projects } = props
   return (
     <main>
