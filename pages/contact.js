@@ -41,7 +41,7 @@ const Contact = (props) => {
     onSubmit: async (values) => {
 
       try {
-        console.log("strapi API env test", process.env.NEXT_PUBLIC_STRAPI_URL)
+        // console.log("strapi API env test", process.env.NEXT_PUBLIC_STRAPI_URL)
         const req = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
           method: 'POST',
           headers: {

@@ -9,11 +9,9 @@ import { getAllArticles, getAllProjects, getAllServices } from '../utils/api'
 
 export default function Home(props) {
   const { projects, blogArticles, services } = props
-  console.log("props", props)
+  // console.log("props", props)
 
-  // const fetchHomePageData = (props) => {
 
-  // }
 
   return (
     <div className={styles.container}>
@@ -55,8 +53,8 @@ export default function Home(props) {
                   </p>
                 </div>
               </header>
-              <div className="">
-              <ul class="services grid md:grid-cols-3 gap-6 transform md:-translate-y-20 mt-10">
+              <div >
+              <ul className="services grid md:grid-cols-3 gap-6 transform md:-translate-y-20 mt-10">
                 <ServiceCard services={services} />
               </ul>
               </div>
