@@ -19,9 +19,9 @@ const ServiceCard = (props) => {
 
           return (
 
-            <li className="service rounded-xl shadow-lg list-none cursor-pointer ">
+            <li className="service rounded-xl shadow-lg list-none cursor-pointer " key={index}>
 
-              <Link href={`/services/${slug}`} key={index} className="">
+              <Link href={`/services/${slug}`}   className>
 
               <header>
                 <div className="img-cont h-36 overflow-hidden rounded-xl">

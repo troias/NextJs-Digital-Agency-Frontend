@@ -35,7 +35,7 @@ const ArticleCard = (props) => {
                                     <p className="mb-2">{intro}</p>  
 
                                 {/* <!-- link to dynamic page based on the `slug` value --> */}
-                                  <Link href={`/blog/${slug}`}>
+                                  <Link href={`/blog/${slug}`} passHref>
                                         <button className="cta w-max">Read more</button>
                                     </Link>  
                             </header>

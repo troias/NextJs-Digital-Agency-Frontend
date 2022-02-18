@@ -32,12 +32,12 @@ const ProjectCard = (props) => {
                   <p>{intro}</p>
 
                   <p className="text-gray-600 text-sm mb-2">{projectCategory}</p>
-                  <Link href={`/projects/${slug}`}>
+                  <Link href={`/projects/${slug}`} passHref>
                     <button className="cta w-max">View Project</button>
                   </Link>
                 </header>
                 <div
-                  class="img-cont rounded-xl h-full max-h-40 md:max-h-72 row-start-1 md:col-start-1 md:col-end-5 overflow-hidden">
+                  className="img-cont rounded-xl h-full max-h-40 md:max-h-72 row-start-1 md:col-start-1 md:col-end-5 overflow-hidden">
                   <Image
                     loader={loader}
                     layout="responsive"

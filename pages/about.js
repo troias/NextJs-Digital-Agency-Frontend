@@ -7,7 +7,7 @@ import React from 'react'
     <header>
       <div className="wrapper"></div>
       <div className="cover img-cont h-full max-h-72">
-        <img className=" rounded-b-2xl" src="~/assets/img/hero.jpg" alt="" />
+        {/* <img className=" rounded-b-2xl" src="~/assets/img/hero.jpg" alt="" /> */}
       </div>
     </header>
     <div className="cont relative bg-gray-50 p-12 z-10 m-auto max-w-6xl rounded-2xl">
