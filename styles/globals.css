@@ -42,6 +42,11 @@ a {
     @apply text-4xl md:text-7xl font-black mb-4;
   }
 
+  .hero-text span {
+    @apply text-3xl md:text-5xl text-gray-700 italic;
+  
+  }
+
   .header-text {
     @apply text-2xl md:text-5xl font-black mb-2;
   }

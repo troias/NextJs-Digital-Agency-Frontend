@@ -15,8 +15,11 @@ const ProjectCard = (props) => {
           // console.log("InnerProjectCard", project)
           const { title, intro, slug, cover } = project.attributes
           const { project_categories } = project.attributes
-          const projectCategory = project_categories.data[0].attributes.name
-          const { url, alternativeText, width, height } = cover.data.attributes
+           const projectCategory = project_categories.data
+           const [{ attributes: { name } }] = projectCategory
+           console.log("projectCategory", name)
+           const projectCategoryName = name || ""
+           const { url, alternativeText, width, height } = cover.data.attributes
           // console.log("ProjectCategory", projectCategory)
           // console.log("CoverImg", cover)
           // console.log("img data", url, alternativeText, width, height)
@@ -31,7 +34,7 @@ const ProjectCard = (props) => {
                   <h1 className="text-xl md:text-3xl font-bold">{title}</h1>
                   <p>{intro}</p>
 
-                  <p className="text-gray-600 text-sm mb-2">{projectCategory}</p>
+                   <p className="text-gray-600 text-sm mb-2">{projectCategoryName}</p>  
                   <Link href={`/projects/${slug}`} passHref>
                     <button className="cta w-max">View Project</button>
                   </Link>

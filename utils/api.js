@@ -1,9 +1,15 @@
 export const fetchProjects = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
+  console.log("process.env.NEXT_PUBLIC_STRAPI_URL", process.env.NEXT_PUBLIC_STRAPI_URL)
+
+  const apiKey = process.env.STRAPI_API_KEY;
+
+  const graphEndpoint = `${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql` || "http://localhost:1337/graphql"
+    const res = await fetch(graphEndpoint, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
+            Authorization: `ApiKey ${apiKey}`,
         },
         body: JSON.stringify({
 
@@ -83,6 +89,11 @@ export const fetchProjects = async () => {
         `,
         }),
     })
+
+    if (res.status !== 200) {
+        console.log("Error: ", res.status)
+        throw new Error("Failed to fetch API")
+    }
 
     const data = await res.json()
     return data

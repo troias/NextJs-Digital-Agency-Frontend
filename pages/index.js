@@ -96,9 +96,9 @@ export const getStaticProps = async (ctx) => {
   const blogArticles = await getAllArticles()
   const services = await getAllServices()
 
-   console.log("projects", projects)
-   console.log("fetchBlogArticles", blogArticles)
-   console.log("fetchServices", services)
+  //  console.log("projects", projects)
+  //  console.log("fetchBlogArticles", blogArticles)
+  //  console.log("fetchServices", services)
 
 
   return {
