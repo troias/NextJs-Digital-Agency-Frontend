@@ -1,5 +1,5 @@
 import React from 'react'
-import { getAllServices } from '../../utils/api'
+import { getAllServices, getServices } from '../../utils/api'
 import ServiceCard from '../../components/services/serviceCard'
 
  const Index = (props) => {
@@ -29,10 +29,12 @@ export default Index
 
 export const getStaticProps = async () => {
   const services = await getAllServices()
+  const servicesData = await getServices()
   // console.log("services", services)
   return {
     props: {
-      services
+      services,
+      servicesData
     }
   }
 }

@@ -19,32 +19,30 @@ const ServiceCard = (props) => {
 
           return (
 
-            <li className="service rounded-xl shadow-lg list-none cursor-pointer " key={index}>
-
-              <Link href={`/services/${slug}`}   className>
-
+            <li className="service rounded-xl shadow-lg list-none cursor-pointer" key={index}>
+            <Link href={`/services/${slug}`} className="link-styling">
               <header>
-                <div className="img-cont h-36 overflow-hidden rounded-xl">
-                  <Image
-                    loader={loader}
-                    layout="responsive"
-                    src={url}
-                    alt={alternativeText}
-                    width={width}
-                    height={height}
-                    objectFit="contain"
-                  />
-                </div>
+              <div className="relative">
+      <div className="img-cont h-36 overflow-hidden rounded-xl">
+        <Image
+          loader={loader}
+          layout="responsive"
+          src={url}
+          alt={alternativeText}
+          width={width}
+          height={height}
+          objectFit="contain"
+          className="filter grayscale-90 hover:grayscale-0 transition duration-300 ease-in-out"
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-r from-green-100 via-green-300 to-transparent opacity-30 hover:opacity-30 hover:to-transparent hover:opacity-0 transition duration-300 ease-in-out"></div>
+    </div>
                 <div className="text-wrapper p-4">
                   <h3 className="font-bold text-xl mb-2">{name}</h3>
-                  <p className="mb-2">
-                    {description}
-                  </p>
+                  <p className="mb-2">{description}</p>
                 </div>
               </header>
-
             </Link>
-
           </li>
 
   )

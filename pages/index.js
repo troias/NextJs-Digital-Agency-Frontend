@@ -5,7 +5,7 @@ import styles from "../styles/Home.module.css"
 import ArticleCard from '../components/articles/articleCard'
 import ProjectCard from '../components/projects/projectCard'
 import ServiceCard from '../components/services/serviceCard'
-import { getAllArticles, getAllProjects, getAllServices } from '../utils/api'
+import { getAllArticles, getAllProjects, getAllServices, getServices } from '../utils/api'
 
 export default function Home(props) {
   const { projects, blogArticles, services } = props
@@ -30,10 +30,7 @@ export default function Home(props) {
                   Designli - Beautiful Innovation
                 </h1>
                 <p className="mb-4  mt-5">
-                  We at Designli are obsessed with beautiful innovation. That&apos;s
-                  why we go for a modern approach in providing high end premium
-                  services to our customers and boy are they happy with the
-                  results so far!
+                At our Shopify agency and UX design studio, we are driven by a passion for stunning innovation. We believe in taking a modern approach to deliver top-notch, premium services to our clients. The satisfaction our customers have experienced with our results so far speaks volumes about our commitment to excellence.
                 </p>
                 <Link href="/contact" passHref>
                   <button className="bg-gray-700 text-gray-50 py-1 px-3 rounded-md transform hover:scale-105 mt-10">
@@ -95,6 +92,7 @@ export const getStaticProps = async (ctx) => {
   const projects = await getAllProjects()
   const blogArticles = await getAllArticles()
   const services = await getAllServices()
+  const servicesData = await getServices()
 
   //  console.log("projects", projects)
   //  console.log("fetchBlogArticles", blogArticles)
@@ -106,6 +104,7 @@ export const getStaticProps = async (ctx) => {
       projects,
       blogArticles,
       services,
+      servicesData
     },
   }
 }

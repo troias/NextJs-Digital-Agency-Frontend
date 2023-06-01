@@ -82,7 +82,21 @@ export const fetchProjects = async () => {
               
               }
           }
+        }  
+
+        services {
+          data {
+            attributes {
+              name
+              description
+              slug
+              cover {
+                ...fileParts
+              }
+            }
+          }
         }
+
 
 
         }
@@ -123,11 +137,25 @@ export const getAllServices = async () => {
 
 }
 
+export const getServices = async () => {
+    const services = await fetchProjects().then(
+        (data) => data.data.services.data
+    )
+    return services
+}
+
 export const getProjectBySlug = async (slug) => {
     const project = await fetchProjects().then(
         (data) => data.data.projects.data.find((project) => project.attributes.slug === slug)
     )
     return project
+}
+
+export const getServiceDataBySlug = async (slug) => {
+  const service = await getServices().then(
+    (data) => data.find((service) => service.attributes.slug === slug)
+  )
+  return service
 }
 
 export const getPostBySlug = async (slug) => {

@@ -2,7 +2,19 @@ import React from 'react'
 import Link from 'next/link'
 import NextLogo from '../.././ui/nextLogo'
 
-const Footer = () => {
+const Footer = ({
+  data: {
+    services,
+    projects,
+    articles,
+    servicesData,
+  },
+}) => {
+  console.log("Footer", servicesData)
+
+
+
+
   return (
     <>
     <footer className="site-footer bg-gray-800 text-gray-50 p-4">
@@ -29,9 +41,15 @@ const Footer = () => {
             <section className="mb-4 text-center md:text-left">
               <h1 className="text-xl font-extrabold">Services</h1>
               <ul>
-                <li><Link href="/services/branding">Branding</Link></li>
-                <li><Link href="/services/graphics">Graphics</Link></li>
-                <li><Link href="/services/ux-ui">UI/UX</Link></li>
+                {
+                  servicesData && servicesData.map((service) => (
+                 
+                    <li key={service.id}><Link href={`/services/${service.attributes.slug}`}>{service.attributes.name}</Link></li>
+                  ))
+                }
+                {/* <li><Link href="/services/branding">Shopify Developent</Link></li>
+                <li><Link href="/services/ux-ui">UI/UX</Link></li> */}
+
               </ul>
             </section>
             <section className="text-center md:text-left">
@@ -58,3 +76,6 @@ const Footer = () => {
 }
 
 export default Footer
+
+
+
