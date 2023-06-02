@@ -3,7 +3,7 @@ export const fetchProjects = async () => {
 
   const apiKey = process.env.STRAPI_API_KEY;
 
-  const graphEndpoint = `${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql` || "http://localhost:1337/graphql"
+  const graphEndpoint = `${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql` 
     const res = await fetch(graphEndpoint, {
         method: "POST",
         headers: {
@@ -27,6 +27,20 @@ export const fetchProjects = async () => {
               }
             }
           }
+          fragment imgPart on UploadFileRelationResponseCollection {
+            data {
+              id
+              attributes {
+                alternativeText
+                width
+                height
+                mime
+                url
+                formats
+              }
+            }
+          }
+
           query {
             projects {
               data {
@@ -38,6 +52,13 @@ export const fetchProjects = async () => {
                   cover {
                     ...fileParts
                   }
+                  innerCover {
+                    ...fileParts
+                  }
+                  images {
+                   ...imgPart
+                  }
+             
                   project_categories {
                     data {
                       attributes {

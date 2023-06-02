@@ -2,7 +2,7 @@ import React from 'react'
 import SiteNav from './siteNav'
 import Link from 'next/link'
 import NextLogo from '../.././ui/nextLogo'
-import { ReactComponent as MySvg } from '../../../public/logo2.svg';
+
 import Image from 'next/image'
 
 
@@ -17,10 +17,10 @@ const Header = (props) => {
             <figure className="SiteLogo flex items-center gap-2">
               {/* <NextLogo className="w-8" /> */}
               <Image
-          src="/logo2.svg"
+          src="/roshan.svg"
           alt="Logo"
-          width={100}
-          height={100}
+          width={75  }
+          height={60}
         />
               <h1 className=" text-lg font-black cursor-pointer">RoshanStudios</h1>
             </figure>

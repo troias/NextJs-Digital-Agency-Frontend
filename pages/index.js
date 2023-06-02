@@ -26,8 +26,8 @@ export default function Home(props) {
           <section className="site-section hero-section h-[80vh]">
             <div className="wrapper flex items-center justify-center h-full m-auto max-w-6xl">
               <header className="text-center md:w-2/3 md:mt-16 ">
-                <h1 className="hero-text md:text-7xl ">
-                  Designli - Beautiful Innovation
+                <h1 className="hero-text md:text-5xl ">
+                Igniting Beautiful Innovation: Roshan Studios Unveils a World of Possibilities
                 </h1>
                 <p className="mb-4  mt-5">
                 At our Shopify agency and UX design studio, we are driven by a passion for stunning innovation. We believe in taking a modern approach to deliver top-notch, premium services to our clients. The satisfaction our customers have experienced with our results so far speaks volumes about our commitment to excellence.
@@ -46,7 +46,7 @@ export default function Home(props) {
                 <div className="wrapper col-start-2">
                   <h1 className="header-text">Our Services</h1>
                   <p className="mb-16">
-                    We at Designli we are obsessed with beautiful innovation.
+                    At Roshan Studios are obsessed with beautiful innovation.
                   </p>
                 </div>
               </header>
