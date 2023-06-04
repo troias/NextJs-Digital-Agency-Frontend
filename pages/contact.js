@@ -4,6 +4,7 @@ import { loader } from '../utils/media'
 import contatImg from '../assets/imgs/hero.jpg'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { getServices } from '../utils/api'
 
 
 const validationSchema = Yup.object().shape({
@@ -17,11 +18,16 @@ const validationSchema = Yup.object().shape({
 
   message: Yup.string()
     .min(2, 'Too Short!')
-    .max(160, 'Too Long')
+    .max(160, 'Too Long'),
+
+    services: Yup.array()
+    .min(1, 'Pick at least 1 service')
 
 })
 
 const Contact = (props) => {
+
+  console.log("props", props)
 
   const formik = useFormik({
     initialValues: {
@@ -29,7 +35,7 @@ const Contact = (props) => {
       company: '',
       email: '',
       message: '',
-      service: [
+      services: [
   
       ]
     
@@ -40,7 +46,13 @@ const Contact = (props) => {
 
     onSubmit: async (values) => {
 
+      console.log("values", values.services)
+
       try {
+        const serviceNames = values.services.map((service) => service.name);
+
+        console.log("serviceNames", serviceNames)
+
 
         const req = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
           method: 'POST',
@@ -51,22 +63,24 @@ const Contact = (props) => {
           },
           body: JSON.stringify({
             query: `
-            mutation($data: VisitorMessageInput!) {
-              createVisitorMessage(data: $data){
-                data {
-                  attributes {
-                    name
-                    project_categories {
-                      data {
-                        attributes {
-                          name
+              mutation($data: VisitorMessageInput!) {
+                createVisitorMessage(data: $data) {
+                  data {
+                    attributes {
+                      name
+                        services {
+                          data {
+                            attributes {
+                              name
+
+                            
+                          }
                         }
                       }
                     }
                   }
                 }
               }
-            }
             `,
             variables: {
               data: {
@@ -74,7 +88,8 @@ const Contact = (props) => {
                 company: values.company,
                 email: values.email,
                 body: values.message,
-                project_categories: values.service
+               
+                services: serviceNames
             
               }
             }
@@ -83,7 +98,7 @@ const Contact = (props) => {
         })
 
         const res = await req.json()
-        // console.log("res", res)
+         console.log("res", res)
 
       } catch (error) {
         console.log("error", error)
@@ -95,6 +110,7 @@ const Contact = (props) => {
   return (
 
     <main >
+      {console.log("formik", formik.values)}
       <div className="px-4">
         <div className="cover img-cont h-full max-h-96">
           <Image
@@ -147,7 +163,36 @@ const Contact = (props) => {
             <div className="wrapper">
               <h3 className="">Pick a service</h3>
               <div className="form-group check">
-                <div className="form-control check">
+              {props.services.map((service, index) => (
+          <div className="form-control check" key={index}>
+            <input
+              type="checkbox"
+              name="services"
+              id={service.attributes.name}
+              value={service.attributes.name}
+              onChange={(e) => {
+                const checked = e.target.checked;
+                console.log("checked", checked)
+                const serviceName = e.target.value;
+                let updatedServices = [...formik.values.services];
+        
+                if (checked) {
+                  updatedServices.push({ name: serviceName });
+                } else {
+                  updatedServices = updatedServices.filter(
+                    (service) => service.name !== serviceName
+                  );
+                }
+        
+                formik.setFieldValue('services', updatedServices);
+              }}
+              onBlur={formik.handleBlur}
+              checked={formik.values.services.some((serviceObj) => serviceObj.name === service.attributes.name)}
+            />
+            <label htmlFor={service.attributes.name}>{service.attributes.name}</label>
+          </div>
+        ))}
+                {/* <div className="form-control check">
                   <input type="checkbox" name="service" id="branding" value="1" onChange={formik.handleChange} onBlur={formik.handleBlur} />
                   <label htmlFor="branding">Branding</label>
                 </div>
@@ -158,7 +203,7 @@ const Contact = (props) => {
                 <div className="form-control check">
                   <input type="checkbox" name="service" id="ui/ux" value="3" onChange={formik.handleChange} onBlur={formik.handleBlur} />
                   <label htmlFor="ui/ux">UI/UX</label>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -185,3 +230,14 @@ export default Contact
 {/* <div  className=" absolute top-0 left-0 w-full h-full flex items-center justify-center bg-white" >
             <h1 className="header-text w-8/12">Great! Your message is on it's way to us!</h1>
           </div> */}
+
+          export async function getStaticProps() {
+            const services = await getServices()
+
+            return {
+              props: {
+                services
+              }
+          }
+        }
+

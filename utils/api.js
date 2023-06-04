@@ -107,7 +107,9 @@ export const fetchProjects = async () => {
 
         services {
           data {
+            id
             attributes {
+            
               name
               description
               slug
