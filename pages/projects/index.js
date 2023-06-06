@@ -14,7 +14,7 @@ import { getAllProjects } from '../../utils/api'
       </div>
     </header>
     <ul className="m-auto px-4 max-w-5xl mb-12">
-       <ProjectCard projects={projects}/> 
+       {/* <ProjectCard projects={projects}/>  */}
     </ul>
   </main>
   )
@@ -23,10 +23,10 @@ import { getAllProjects } from '../../utils/api'
 export default Projects
 
 export const getStaticProps = async () => {
-  const projects = await getAllProjects()
+  // const projects = await getAllProjects()
   return {
     props: {
-      projects,
+      // projects,
     },
   }
 }

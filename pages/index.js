@@ -9,7 +9,7 @@ import { getAllArticles, getAllProjects, getAllServices, getServices } from '../
 
 export default function Home(props) {
   const { projects, blogArticles, services } = props
-  // console.log("props", props)
+  console.log("props", projects)
 
 
 
@@ -74,7 +74,9 @@ export default function Home(props) {
               <header  className="md:grid col-start-1 col-end-3 mb-8">
                 <h1 className="header-text">Our Blog</h1>
                 <p className="mb-2">Helpful content from from the team to you.</p>
+                <Link href="/blog" passHref>
                 <button className="cta w-max">Explore our blog</button>
+                </Link>
               </header>
               <ul className="articles md:grid gap-6 col-start-3 col-end-8">
                 <ArticleCard articles={blogArticles} />
@@ -87,24 +89,37 @@ export default function Home(props) {
   )
 }
 
-export const getStaticProps = async (ctx) => {
+export const getStaticProps = async () => {
+  try {
+    const [projects, blogArticles, services, servicesData] = await Promise.all([
+      getAllProjects().catch(() => []),
+      getAllArticles().catch(() => []),
+      getAllServices().catch(() => []),
+      getServices().catch(() => []),
+    ])
 
-  const projects = await getAllProjects()
-  const blogArticles = await getAllArticles()
-  const services = await getAllServices()
-  const servicesData = await getServices()
 
-  //  console.log("projects", projects)
-  //  console.log("fetchBlogArticles", blogArticles)
-  //  console.log("fetchServices", services)
+    return {
+      props: {
+        projects,
+        blogArticles,
+        services,
+        servicesData,
+      },
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error)
 
+    // Handle the error as needed, such as logging, sending alerts, etc.
+    // Optionally, you can also return a custom error message or take alternative actions.
+  }
 
   return {
     props: {
-      projects,
-      blogArticles,
-      services,
-      servicesData
+      projects: [],
+      blogArticles: [],
+      services: [],
+      servicesData: [],
     },
   }
 }

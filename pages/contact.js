@@ -49,9 +49,12 @@ const Contact = (props) => {
       console.log("values", values.services)
 
       try {
-        const serviceNames = values.services.map((service) => service.name);
+        // const serviceNames = values.services.map((service) => service.name);
+        const serviceIds = values.services.map((service) => service.id);
+        const removeUndefinedfromArr = serviceIds.filter((service) => service !== undefined);
+        const serviceIdArr = removeUndefinedfromArr
 
-        console.log("serviceNames", serviceNames)
+        console.log("serviceIdArr", serviceIdArr)
 
 
         const req = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
@@ -70,6 +73,7 @@ const Contact = (props) => {
                       name
                         services {
                           data {
+                            id
                             attributes {
                               name
 
@@ -89,7 +93,7 @@ const Contact = (props) => {
                 email: values.email,
                 body: values.message,
                
-                services: serviceNames
+                services: serviceIdArr
             
               }
             }
@@ -177,7 +181,7 @@ const Contact = (props) => {
                 let updatedServices = [...formik.values.services];
         
                 if (checked) {
-                  updatedServices.push({ name: serviceName });
+                  updatedServices.push({ name: serviceName, id: service.id });
                 } else {
                   updatedServices = updatedServices.filter(
                     (service) => service.name !== serviceName

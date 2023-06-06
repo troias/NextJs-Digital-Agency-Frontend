@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import NextLogo from '../.././ui/nextLogo'
+import Image from 'next/image'
 
 const Footer = ({
   data: {
@@ -23,10 +24,16 @@ const Footer = ({
           <header className="grid col-start-1 col-end-3 mb-6 text-center md:text-left" >
             <figure
               className=" SiteLogo flex items-center justify-center md:justify-start gap-2 mb-2" >
-               <NextLogo  /> 
+               {/* <NextLogo  />  */}
+              <Image
+                src="/roshan.svg"
+                alt="RoshanStudios"
+                width={50}
+                height={50}
+              />
               
             </figure>
-            <h1 className="text-2xl font-black">Designli</h1>
+            <h1 className="text-2xl font-black">RoshanStudios</h1>
             <p>Obsessed with beautiful innovation.</p>
           </header>
           <div className="link-group md:grid grid-cols-3 col-start-3 col-end-6">
