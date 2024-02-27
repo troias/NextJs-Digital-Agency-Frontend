@@ -17,6 +17,7 @@ const ServiceCard = (props) => {
             cover?.data?.attributes || {};
 
 
+
           return (
             <li className="service rounded-xl shadow-lg list-none cursor-pointer" key={index}>
               <Link href={`/services/${slug}`} className="link-styling">
@@ -26,15 +27,17 @@ const ServiceCard = (props) => {
                       <div className="img-cont h-36 overflow-hidden rounded-xl">
                         <Image
                           loader={loader}
-                          layout="fill"
+                          layout="responsive"
+                          width={width || 250  }
+                          height={height || 250 }
                           src={url}
                           alt={alternativeText}
         
                           objectFit="contain"
-                          className=" filter grayscale-90 hover:grayscale-0 transition duration-300 ease-in-out"
+                          className=" filter grayscale-90 hover:grayscale-0 transition duration-300 ease-in-out "
                         />
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-green-100 via-green-300 to-transparent opacity-30 hover:opacity-30 hover:to-transparent hover:opacity-0 transition duration-300 ease-in-out"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r  to-transparent opacity-30 hover:to-transparent hover:opacity-0 transition duration-300 ease-in-out"></div>
                     </div>
                   )}
                   <div className="text-wrapper p-4">

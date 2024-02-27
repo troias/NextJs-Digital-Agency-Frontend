@@ -20,7 +20,7 @@ const Header = (props) => {
           src="/roshan.svg"
           alt="Logo"
           width={75  }
-          height={60}
+          height={50}
         />
               <h1 className=" text-lg font-black cursor-pointer">RoshanStudios</h1>
             </figure>

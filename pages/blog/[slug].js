@@ -8,6 +8,8 @@ import { loader } from '../../utils/media'
 const BlogItem = (props) => {
   const { title, intro, slug, cover, body, categories } = props.posts.attributes;
 
+  console.log("cover", cover)
+
   const categoryName = categories.data[0]?.attributes?.title || '';
 
   return (
@@ -20,7 +22,7 @@ const BlogItem = (props) => {
               loader={loader}
               src={cover.data.attributes.url}
               alt={cover.data.attributes.alt}
-            
+              
               layout="fill"
               objectFit="cover"
               />

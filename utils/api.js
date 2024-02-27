@@ -1,5 +1,5 @@
 export const fetchProjects = async () => {
-  console.log("process.env.NEXT_PUBLIC_STRAPI_URL", process.env.NEXT_PUBLIC_STRAPI_URL)
+
 
   const apiKey = process.env.STRAPI_API_KEY;
 
